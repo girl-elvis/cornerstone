@@ -20,8 +20,7 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
     'primary_navigation' => __('Primary Navigation', 'sage'),
-    'home-menu' => __( 'Home Page Menuboxes', 'sage' ),
-    'sitemap' => __('Footer Sitemap', 'sage')
+    'footer_navigation' => __('Footer Navigation', 'sage')
   ]);
 
 

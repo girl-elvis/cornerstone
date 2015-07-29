@@ -36,28 +36,7 @@ unset($file, $filepath);
 
 
 
-function add_homemenu($content) {
-
-  if(is_home() || is_front_page() ) {
-    $content = '<div class="row"><div class="home-image col-sm-9" style="background:url(';
-    $content .= get_field('homepage_image');
-    $content .= ' ) no-repeat; "><h1 style="color:';
-    //$content .= get_field('homepage_image_text_colour'); 
-    $content .= '">' . get_field('homepage_image_text');
-    $content .= '</h1></div><div class="intro col-sm-3"><aside>';
-    $content .= get_field('intro_text') . '</aside></div></div>';
-    
-    if (has_nav_menu('home-menu')) :
-      $content .= wp_nav_menu( array( 'theme_location' => 'home-menu', 'walker' => new wp_bootstrap_navwalker() ,  'echo'=> false) );
-    endif;
-  }
-
-  return $content;
-}
-add_filter('the_content', 'add_homemenu');
-
-
-add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
+//add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
 
 function special_nav_class($classes, $item){
     $menu_locations = get_nav_menu_locations();

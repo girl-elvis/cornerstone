@@ -20,6 +20,8 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
     'primary_navigation' => __('Primary Navigation', 'sage'),
+    'question_menu' => __('Question menu', 'sage'),
+    'sectors_menu' => __('Sectors menu', 'sage'),
     'footer_navigation' => __('Footer Navigation', 'sage')
   ]);
 

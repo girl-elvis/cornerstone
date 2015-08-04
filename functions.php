@@ -36,14 +36,18 @@ unset($file, $filepath);
 
 
 
-//add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
+add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
 
 function special_nav_class($classes, $item){
     $menu_locations = get_nav_menu_locations();
-    if ( has_term($menu_locations['home-menu'], 'nav_menu', $item) ||  has_term($menu_locations['sitemap'], 'nav_menu', $item)  ) {
-  // if ( 'home-menu' === $args->theme_location ) {
-         if (0 == $item->menu_item_parent) { //makes sure not added to sub-menus
-           $classes[] = "col-sm-3";
+    if ( has_term($menu_locations['question_menu'], 'nav_menu', $item)  ) {
+       $classes[] = "col-sm-3";
+        if (0 == $item->menu_item_parent) { //makes sure not added to sub-menus
+          
+       }
+     } else if (has_term($menu_locations['sectors_menu'], 'nav_menu', $item)) {
+        if (0 == $item->menu_item_parent) { //makes sure not added to sub-menus
+           $classes[] = "col-sm-4";
        }
      }
      return $classes;

@@ -1,14 +1,57 @@
+
+
+
 .page-header {
     border-bottom: none; // get rid of bootstrap default
  }
 
  // Homepage Layout and category menu thing
 
+
+#hometop div ul{
+	list-style: none;
+	padding-left: 0; // cancels out browser default list style 40px padding left
+	li{
+		
+		a{
+			@include vertical-align;
+			display: block;
+			border: 1px solid $brand-primary;
+			padding: 1em 0.8em;
+			height: 5em;
+		.glyphicon{
+			display: block;
+			right: 1%;
+			top: 76%;
+			position: absolute;
+		}
+
+		}
+	}
+	&#menu-sectors li a {
+		font-size: 2em;
+		padding: 0em 0.5em;
+		height: 4.5em;
+		text-transform: uppercase;
+		.menu-desc{
+			text-transform: capitalize;
+			display: block;
+			font-size: 0.5em;
+		}
+		.glyphicon{
+
+			top: 76%;
+		}
+	}
+}
+
+
 .home-image,
 .intro {
 	height:400px;
-	border: 5px solid $pale;
-	background: #cccc99;
+	//border: 5px solid $pale;
+	background: $brand-primary;
+	margin-bottom: 2em;
 
 	img {
 	border:  3px solid black;
@@ -36,4 +79,9 @@
     }   
 }
 
-
+.homebottom {
+	@extend .row;
+	article {
+		@extend .col-sm-3;
+	}
+}

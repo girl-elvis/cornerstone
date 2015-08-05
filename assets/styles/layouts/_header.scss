@@ -9,11 +9,12 @@
 	font-weight: 600;
 	width: 200px;
 	line-height: 1em;
+	border: none;
 }
 
 .row {
-    margin-left: 0;
-    margin-right: 0;
+    // margin-left: 0;
+    // margin-right: 0;
 }
 
 
@@ -36,19 +37,21 @@
 		@include font-helv();
 		li a {
 			color: $dark;
+			border-color: $pale;
 		}
 
-		li a:hover {
-		background: silver;		
-		border-color: white;
+		li a:hover {	
+		
+		border-bottom: 5px solid $highlight;
 		}
 		// override bootstrap nav-default colours.
 		 > .active > a, 
 		 > .active > a:focus, 
 		 > .active > a:hover {
-		background: silver;
+		background: none;
 		color: black;
-		border-color: white;
+		border-color: $pale;
+		border-bottom: 5px solid $highlight;
 		}
 
 	}

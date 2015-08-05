@@ -1,3 +1,35 @@
+/* Mixins */
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  // webpage says this but seems to not need it?
+  // -webkit-transform: translateY(-50%);
+  // -ms-transform: translateY(-50%);
+  // transform: translateY(-50%);
+}
+
+.element p {
+  @include vertical-align;
+}
+
+/* Placeholder selector */
+%vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.element p {
+  @extend %vertical-align;
+}
+
+/* END Mixins */
+
+
+
+
 html{
 	background:white;
 	body{

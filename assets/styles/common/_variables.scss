@@ -20,14 +20,15 @@ $sidebar-sm-columns:    4;
 $brand-primary:         #B0A9A2;
 $dark: #333 ; //nearly black 
 $pale: #f7f7f7 ; //nearly white
+$highlight: #EDA900 ; // orangy yellow
 
 
 
 /* Change grid sizing to 960 */
-$grid-gutter-width:         20px !default;
+// $grid-gutter-width:         20px !default;
 
-// Small screen / tablet
-$container-tablet:             (920px + $grid-gutter-width) !default;
+// // Small screen / tablet
+// $container-tablet:             (920px + $grid-gutter-width) !default;
 
-// Large screen / wide desktop
-$container-large-desktop:      (940px + $grid-gutter-width) !default;
+// // Large screen / wide desktop
+// $container-large-desktop:      (940px + $grid-gutter-width) !default;

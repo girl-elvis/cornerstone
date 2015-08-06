@@ -31,13 +31,22 @@
 
 
 html{
-	background:white;
-	body{
-	background: $pale;
-	}
+
 }
 
+body{
+    background-color: $brand-primary;
+
+}
+.container{
+    background: $pale;
+    border-width: 0;
+    border-left: 2px solid $purple;
+    border-right: 2px solid $purple;
+
+}
 a {
     color: $brand-primary;
     text-decoration: none;
 }
+h2, .h2 {font-size: 16px;}

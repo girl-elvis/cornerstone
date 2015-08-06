@@ -14,8 +14,11 @@
   	get_template_part('templates/content-home');
   } else {
   	get_template_part('templates/content', get_post_type() != 'post' ? get_post_type() : get_post_format());
+
   }
    ?>
 <?php endwhile; ?>
 
-<?php the_posts_navigation(); ?>
+
+
+<?php  (is_home() == FALSE) ? the_posts_navigation() : NOTHING ; //if not homepage, print the 'more posts' link ?>

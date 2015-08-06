@@ -1,32 +1,30 @@
+.banner .container{
+	background-image: url('../images/logo.png');
+	background-repeat: no-repeat;
+	background-position: -2em 0;
+}
+
+
 .brand {
   max-width: 50%;
     margin: 15px 0 10px;
  
  }
- 
-.navbar-default .navbar-brand{
-	font-size: 48px;
-	font-weight: 600;
-	width: 200px;
-	line-height: 1em;
-	border: none;
-}
-
-.row {
-    // margin-left: 0;
-    // margin-right: 0;
-}
-
-
+ .navbar{margin-bottom: 0;}
 
 .menu {list-style: none;}
 
 .navbar-default {// reset bootstrap ones using same class
     background-color: transparent;
-    border-color: white;
+    border-bottom: 0;
     
 
     .navbar-brand{
+    	font-size: 48px;
+	font-weight: 600;
+	width: 200px;
+	line-height: 1em;
+	border: none;
     	color: $dark;
     	&:focus, &:hover {
 
@@ -36,8 +34,8 @@
 	
 		@include font-helv();
 		li a {
-			color: $dark;
-			border-color: $pale;
+			color: $brand-primary;
+			border-bottom: 5px solid transparent;
 		}
 
 		li a:hover {	

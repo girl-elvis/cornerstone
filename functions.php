@@ -42,7 +42,7 @@ function add_homemenu() {
 
     echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>";
      if (has_nav_menu('question_menu')) {
-     wp_nav_menu(['theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
+     wp_nav_menu(['theme_location' => 'question_menu', "container" => "div", 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
     } 
     if (has_nav_menu('sectors_menu')) {
      wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-triangle-right"></span>']);
@@ -74,12 +74,13 @@ function special_nav_class($classes, $item){
 add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
 
 // Add close div (opened in add_homemenu function)
-function add_homediv($content) {
+function add_homediv() {
  if(is_home() || is_front_page() ) { 
-  $content .= "</div>";
+  echo "<div class='quote'><h1> QUOTE HERE </h1></div></div>";
   }
 }
-add_filter('the_content', 'add_homediv');
+add_action( 'loop_end', 'add_homediv');
+
 
 // filter so only 2 news posts
 function hwl_home_pagesize( $query ) {
@@ -90,3 +91,50 @@ if ( is_home() ) {
     }
 }
 add_action( 'pre_get_posts', 'hwl_home_pagesize', 1 );
+
+
+// CUSTOM POST TYPE  
+
+
+add_action( 'init', 'register_cpt_project' );
+
+function register_cpt_project() {
+
+    $labels = array( 
+        'name' => _x( 'Projects', 'project' ),
+        'singular_name' => _x( 'Project', 'project' ),
+        'add_new' => _x( 'Add New', 'project' ),
+        'add_new_item' => _x( 'Add New Project', 'project' ),
+        'edit_item' => _x( 'Edit Project', 'project' ),
+        'new_item' => _x( 'New Project', 'project' ),
+        'view_item' => _x( 'View Project', 'project' ),
+        'search_items' => _x( 'Search Projects', 'project' ),
+        'not_found' => _x( 'No projects found', 'project' ),
+        'not_found_in_trash' => _x( 'No projects found in Trash', 'project' ),
+        'parent_item_colon' => _x( 'Parent Project:', 'project' ),
+        'menu_name' => _x( 'Projects', 'project' ),
+    );
+
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        
+        'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+        'taxonomies' => array( 'category' ),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-building',
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'project', $args );
+}

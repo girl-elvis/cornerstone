@@ -42,7 +42,7 @@ function add_homemenu() {
 
     echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>";
      if (has_nav_menu('question_menu')) {
-     wp_nav_menu(['theme_location' => 'question_menu', "container" => "div", 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
+     wp_nav_menu(['theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
     } 
     if (has_nav_menu('sectors_menu')) {
      wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-triangle-right"></span>']);

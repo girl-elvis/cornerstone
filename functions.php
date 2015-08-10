@@ -29,6 +29,8 @@ foreach ($sage_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+// END SAGE STUFF ////////////////
+
 
 
 
@@ -36,21 +38,24 @@ unset($file, $filepath);
 
 /* HOMEPAGE  */
 
-// Add menu to home page
+// Add top section with menus to home page
+
 function add_homemenu() {
  if(is_home() || is_front_page() ) {  
-
-    echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>";
+    echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>" ;
      if (has_nav_menu('question_menu')) {
-     wp_nav_menu(['theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
+      echo "<div id='homequestions'>";
+       wp_nav_menu(['container' => 'nav' , 'container_id' => 'hereiam' , 'theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
+      echo "</div"; // close #homequestions
     } 
+    
     if (has_nav_menu('sectors_menu')) {
-     wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-triangle-right"></span>']);
+      echo "<div id='homesectors'>";
+       wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-triangle-right"></span>']);
+      echo "</div"; // close #homesectors
     }
     echo "</div><div class='homebottom'><h2> Latest News</h2>";
-  }   
-
-  
+  }     
 }
 add_action( 'loop_start', 'add_homemenu');
 
@@ -70,10 +75,11 @@ function special_nav_class($classes, $item){
      }
      return $classes;
 }
-
 add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
 
+
 // Add close div (opened in add_homemenu function)
+
 function add_homediv() {
  if(is_home() || is_front_page() ) { 
   echo "<div class='quote'><h1> QUOTE HERE </h1></div></div>";
@@ -83,6 +89,7 @@ add_action( 'loop_end', 'add_homediv');
 
 
 // filter so only 2 news posts
+
 function hwl_home_pagesize( $query ) {
 if ( is_home() ) {
         // Display only 2 post for homepage news
@@ -95,7 +102,7 @@ add_action( 'pre_get_posts', 'hwl_home_pagesize', 1 );
 
 // CUSTOM POST TYPE  
 
-
+// Project CPT
 add_action( 'init', 'register_cpt_project' );
 
 function register_cpt_project() {
@@ -138,3 +145,5 @@ function register_cpt_project() {
 
     register_post_type( 'project', $args );
 }
+
+// ADD Project Taxonomy?

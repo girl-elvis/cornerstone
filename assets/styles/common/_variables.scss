@@ -30,7 +30,8 @@ $highlight: #EDA900 ; // orangy yellow
 
 
 /* Change grid sizing to 960 */
-$grid-gutter-width:         20px !default;
+$grid-gutter-width: 20px !default;
+$pad-left : ($grid-gutter-width/2);
 
 // Small screen / tablet
 $container-tablet:             (920px + $grid-gutter-width) !default;

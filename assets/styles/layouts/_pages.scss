@@ -85,9 +85,22 @@
 .homebottom {
 	@extend .row;
 	> h2{
-		padding-left: ($grid-gutter-width/2);
+		padding-left: $pad-left;
 	}
 	article {
 		@extend .col-sm-3;
+	}
+}
+
+// SINGLE PROJECT PAGE
+
+
+.single-project {
+	.entry-title {
+		padding-left: $pad-left;
+	}
+	.entry-thumb img{
+		width: 100%;
+		height: auto;
 	}
 }

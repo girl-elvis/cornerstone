@@ -209,6 +209,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
         $fb_output .= '</' . $container . '>';
 
       echo $fb_output;
+      echo "<br>Container: " . $container;
     }
   }
 }

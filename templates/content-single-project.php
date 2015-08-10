@@ -6,26 +6,31 @@
     </header>
 
     <div class="project-meta col-sm-6" >
-      <div class="entry-thumb"><?php the_post_thumbnail("thumbnail"); ?> </div>
+      <div class="entry-thumb"><?php the_post_thumbnail("large"); ?> </div>
 
+      <div class="row">
 <?php
-    the_field( "client-landowner" ); 
+    
+    $project_fields  = array("client-landowner" , "value" ,  "our_role", "client_website", "project_website" );
 
-the_field( "value" ); 
-the_field( "our_role" ); 
-the_field( "client_website" ); 
-the_field( "project_website" );
+    foreach ($project_fields as $field){
+      $field = get_field_object($field);
+      echo '<div class="col-sm-4">' . $field['label'] . '</div><div class="col-sm-8"> ' . $field['value'] . '</div>';
+    }
+
+
 
 
 ?>
+</div>
     </div>
     <div class="entry-conten col-sm-6">
       <?php the_content(); ?>
     </div>
     <div class="testemonial col-sm-6">
-      <h1>"QUOTE TESTEMONIAL HERE"</h1>
+      <h1>"Quote Testemonial Here"</h1>
     </div>
-    <div class="related col-sm-6">
+    <div class="related col-sm-6"> <h2>More Projects here</h2>
           <footer>
       <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
     </footer>

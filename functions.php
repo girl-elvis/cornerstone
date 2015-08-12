@@ -31,7 +31,12 @@ foreach ($sage_includes as $file) {
 unset($file, $filepath);
 // END SAGE STUFF ////////////////
 
+function load_fonts() {
+           wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic');
+           wp_enqueue_style( 'googleFonts');
+       }
 
+   add_action('wp_print_styles', 'load_fonts');
 
 
 /* HEADER  */
@@ -42,19 +47,14 @@ unset($file, $filepath);
 
 function add_homemenu() {
  if(is_home() || is_front_page() ) {  
-    echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>" ;
+    echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>";
      if (has_nav_menu('question_menu')) {
-      echo "<div id='homequestions'>";
-       wp_nav_menu(['container' => 'nav' , 'container_id' => 'hereiam' , 'theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
-      echo "</div"; // close #homequestions
+       wp_nav_menu(['theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
     } 
-    
     if (has_nav_menu('sectors_menu')) {
-      echo "<div id='homesectors'>";
        wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-triangle-right"></span>']);
-      echo "</div"; // close #homesectors
     }
-    echo "</div><div class='homebottom'><h2> Latest News</h2>";
+    echo "</div><div class='homebottom'><h2>Latest News</h2>";
   }     
 }
 add_action( 'loop_start', 'add_homemenu');

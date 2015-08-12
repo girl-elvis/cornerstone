@@ -75,6 +75,17 @@ function assets() {
 
   wp_enqueue_script('modernizr', asset_path('scripts/modernizr.js'), [], null, true);
   wp_enqueue_script('sage_js', asset_path('scripts/main.js'), ['jquery'], null, true);
+
+   wp_enqueue_style('googleFonts', 'http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic');
+ 
+ 
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 
+
+function load_fonts() {
+           wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic');
+           wp_enqueue_style( 'googleFonts');
+       }
+
+//   add_action('wp_print_styles', 'load_fonts');

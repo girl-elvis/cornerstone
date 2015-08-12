@@ -35,7 +35,7 @@
 		@include font-helv();
 		li a {
 			color: $brand-primary;
-			border-bottom: 5px solid transparent;
+		//	border-bottom: 5px solid transparent;
 		}
 
 		li a:hover {	
@@ -48,8 +48,8 @@
 		 > .active > a:hover {
 		background: none;
 		color: black;
-		border-color: $pale;
-		border-bottom: 5px solid $highlight;
+		//border-color: $pale;
+		//border-bottom: 5px solid $highlight;
 		}
 
 	}

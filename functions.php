@@ -31,12 +31,6 @@ foreach ($sage_includes as $file) {
 unset($file, $filepath);
 // END SAGE STUFF ////////////////
 
-function load_fonts() {
-           wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic');
-           wp_enqueue_style( 'googleFonts');
-       }
-
-   add_action('wp_print_styles', 'load_fonts');
 
 
 /* HEADER  */
@@ -47,17 +41,29 @@ function load_fonts() {
 
 function add_homemenu() {
  if(is_home() || is_front_page() ) {  
-    echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>";
+    echo "<div id='hometop'><div class='home-image'>" .  get_new_royalslider(1) . "</div>";
      if (has_nav_menu('question_menu')) {
        wp_nav_menu(['theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
     } 
     if (has_nav_menu('sectors_menu')) {
        wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-triangle-right"></span>']);
     }
-    echo "</div><div class='homebottom'><h2>Latest News</h2>";
+    echo "</div> <div class='homebottom row'><div class='homenews col-sm-6'><h2>Latest News</h2>";
   }     
 }
 add_action( 'loop_start', 'add_homemenu');
+
+
+// Add close div (opened in add_homemenu function)
+
+function close_homediv() {
+ if(is_home() || is_front_page() ) { 
+  echo "</div><div class='quote col-sm-6'><h1> QUOTE HERE </h1></div></div>";
+  }
+}
+add_action( 'loop_end', 'close_homediv');
+
+
 
 // Add classes to home page menus
 
@@ -78,14 +84,7 @@ function special_nav_class($classes, $item){
 add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
 
 
-// Add close div (opened in add_homemenu function)
 
-function add_homediv() {
- if(is_home() || is_front_page() ) { 
-  echo "<div class='quote'><h1> QUOTE HERE </h1></div></div>";
-  }
-}
-add_action( 'loop_end', 'add_homediv');
 
 
 // filter so only 2 news posts

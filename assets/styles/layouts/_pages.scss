@@ -3,8 +3,9 @@
 
 .page-header {
     border-bottom: none; // get rid of bootstrap default
-    .home &{
-    	margin:0;
+    .home & h1{
+    	
+    	@extend .offscreen;
     }
  }
 

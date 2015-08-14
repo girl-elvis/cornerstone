@@ -60,6 +60,53 @@ function close_homediv() {
  if(is_home() || is_front_page() ) { 
   echo "</div><div class='quote col-sm-6'><h1> QUOTE HERE </h1></div></div>";
   }
+
+  else if (is_page('our-expertise')){ // PEOPLE PAGE
+
+    // For Postition peeps first
+    $args = array(
+      'post_type' => 'person','nopaging' => true,
+      'post_per_page' => '-1',
+      // 'meta_query' => array(
+      //    array(
+      //       'key' => 'postition',
+      //       'value'   => 'STAFF',
+      //       'compare' => 'LIKE',
+      //     )
+      // )
+   );
+  $postslist = get_posts( $args );
+  global $post;
+
+  // LOOP FOR STAFF
+  echo "<div id='staff'><ul>";
+
+  foreach ( $postslist as $post ) :    
+    setup_postdata( $post ); 
+    $pos = get_post_meta($post->ID, 'postition', true);
+      if (in_array("STAFF", $pos)) {
+          echo "<li>" . get_the_title() . "</li>"; 
+      }
+  endforeach;  
+
+  echo "</ul></div>";
+
+  // LOOP FOR STAFF
+  echo "<div id='board'><h2>BOARD:</h2><p>The Cornerstone Board is chaired by John McDonough, with six non-executive directors, both ordinary and preference shareholders.</p><ul>";
+
+  foreach ( $postslist as $post ) :    
+    setup_postdata( $post ); 
+    $pos = get_post_meta($post->ID, 'postition', true);
+      if (in_array("BOARD", $pos)) {
+          echo "<li>" . get_the_title() . "</li>"; 
+      }
+  endforeach;  
+
+  echo "</ul></div>";
+
+  wp_reset_postdata();
+
+  }
 }
 add_action( 'loop_end', 'close_homediv');
 
@@ -144,5 +191,50 @@ function register_cpt_project() {
 
     register_post_type( 'project', $args );
 }
+
+// Person CPT for staff & board 
+    add_action( 'init', 'register_cpt_person' );
+
+    function register_cpt_person() {
+
+        $labels = array( 
+            'name' => _x( 'People', 'person' ),
+            'singular_name' => _x( 'Person', 'person' ),
+            'add_new' => _x( 'Add New', 'person' ),
+            'add_new_item' => _x( 'Add New Person', 'person' ),
+            'edit_item' => _x( 'Edit this Person', 'person' ),
+            'new_item' => _x( 'New Person', 'person' ),
+            'view_item' => _x( 'View this Person', 'person' ),
+            'search_items' => _x( 'Search People', 'person' ),
+            'not_found' => _x( 'No people found', 'person' ),
+            'not_found_in_trash' => _x( 'No people found in Trash', 'person' ),
+            'parent_item_colon' => _x( 'Parent:', 'person' ),
+            'menu_name' => _x( 'People', 'person' ),
+        );
+
+        $args = array( 
+            'labels' => $labels,
+            'hierarchical' => false,
+            
+            'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+            
+            'public' => true,
+            'show_ui' => true,
+            'show_in_menu' => true,
+             'menu_position' => 5,
+            'menu_icon' => 'dashicons-groups',
+            'show_in_nav_menus' => true,
+            'publicly_queryable' => true,
+            'exclude_from_search' => false,
+            'has_archive' => true,
+            'query_var' => true,
+            'can_export' => true,
+            'rewrite' => true,
+            'capability_type' => 'post'
+        );
+
+        register_post_type( 'person', $args );
+    }
+
 
 // ADD Project Taxonomy?

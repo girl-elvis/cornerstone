@@ -1,4 +1,4 @@
-<header class="banner navbar navbar-default navbar-static-top" role="banner">
+<header class="banner navbar navbar-default navbar-fixed-top" role="banner">
   <div class="container">
   <div class="logo"><a class="navbar-brand offscreen" title="<?php bloginfo('name'); ?>" rel="home" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a></div>
 

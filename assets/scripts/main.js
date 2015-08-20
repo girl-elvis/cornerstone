@@ -74,4 +74,23 @@
   // Load Events
   $(document).ready(UTIL.loadEvents);
 
+
+
+$( ".peoplesection img" ).click(function() {
+
+  $( this ).parent().parent()
+          .toggleClass( "def" );
+  $( this ).parent().parent().siblings()
+            .addClass("def");
+  
+});
+
+
+
+
+
+
+
+
+
 })(jQuery); // Fully reference jQuery after this point.

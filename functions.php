@@ -61,52 +61,45 @@ function close_homediv() {
   echo "</div><div class='quote col-sm-6'><h1> QUOTE HERE </h1></div></div>";
   }
 
-  else if (is_page('our-expertise')){ // PEOPLE PAGE
+  //else if (is_page('our-expertise')){ // PEOPLE PAGE
 
-    // For Postition peeps first
-    $args = array(
-      'post_type' => 'person','nopaging' => true,
-      'post_per_page' => '-1',
-      // 'meta_query' => array(
-      //    array(
-      //       'key' => 'postition',
-      //       'value'   => 'STAFF',
-      //       'compare' => 'LIKE',
-      //     )
-      // )
-   );
-  $postslist = get_posts( $args );
-  global $post;
+  //   // For Postition peeps first
+  //   $args = array( 'post_type' => 'person','nopaging' => true, 'post_per_page' => '-1', );
+  //   $postslist = get_posts( $args );
+  //   global $post;
 
-  // LOOP FOR STAFF
-  echo "<div id='staff'><ul>";
+  // // LOOP FOR STAFF
+  // echo "<div id='staff'><ul>";
 
-  foreach ( $postslist as $post ) :    
-    setup_postdata( $post ); 
-    $pos = get_post_meta($post->ID, 'postition', true);
-      if (in_array("STAFF", $pos)) {
-          echo "<li>" . get_the_title() . "</li>"; 
-      }
-  endforeach;  
+  // foreach ( $postslist as $post ) :    
+  //   setup_postdata( $post ); 
+  //   $pos = get_post_meta($post->ID, 'postition', true);
+  //   $field = get_fields($post->ID); 
+  //   //print_r($field);
+  //     if (in_array("STAFF", $pos)) {
+  //         echo "<li><div class='expert'><h1>" . get_the_title() . "</h1><h2>" . $field['jobtitle'] . "</h2>" ;
+  //         echo "</div></li>"; 
+  //     }
+  //   endforeach;  
 
-  echo "</ul></div>";
+  // echo "</ul></div>";
 
-  // LOOP FOR STAFF
-  echo "<div id='board'><h2>BOARD:</h2><p>The Cornerstone Board is chaired by John McDonough, with six non-executive directors, both ordinary and preference shareholders.</p><ul>";
+  // // LOOP FOR STAFF
+  // echo "<div id='board'><h2>BOARD:</h2><p>The Cornerstone Board is chaired by John McDonough, with six non-executive directors, both ordinary and preference shareholders.</p><ul>";
 
-  foreach ( $postslist as $post ) :    
-    setup_postdata( $post ); 
-    $pos = get_post_meta($post->ID, 'postition', true);
-      if (in_array("BOARD", $pos)) {
-          echo "<li>" . get_the_title() . "</li>"; 
-      }
-  endforeach;  
+  // foreach ( $postslist as $post ) :    
+  //   setup_postdata( $post ); 
+  //   $pos = get_post_meta($post->ID, 'postition', true);
+  //     if (in_array("BOARD", $pos)) {
+  //         echo "<li>" . get_the_title() . "</li>"; 
+  //     }
+  // endforeach;  
 
-  echo "</ul></div>";
+  // echo "</ul></div>";
 
-  wp_reset_postdata();
+  // wp_reset_postdata();
 
-  }
+  // }
 }
 add_action( 'loop_end', 'close_homediv');
 

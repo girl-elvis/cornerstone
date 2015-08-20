@@ -109,3 +109,36 @@
 		height: auto;
 	}
 }
+
+/// OUR EXPERTISE PAGE
+
+.peoplesection ul {
+	padding-left: 0;
+	position: relative;
+	li{
+		list-style: none; 
+		padding-left: 0; 
+		position: static; 
+		background-color: $pale;
+		min-height: 460px;
+		&.def{
+			height: 200px;
+			min-height: 0;
+			.expert{
+				display: none;
+			}
+		}
+	}
+
+	.expert {
+		width: 100%; 
+		position: absolute; 
+		left: 0; 
+		background-color: $dark;
+		color: $pale;
+		margin-top: $pad-left;
+		height: 300px;
+		div {position: static;}
+	}
+	
+}

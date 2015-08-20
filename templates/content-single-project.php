@@ -8,36 +8,43 @@
     <div class="project-meta col-sm-6" >
       <div class="entry-thumb"><?php the_post_thumbnail("large"); ?> </div>
 
-      <div class="row">
+
+      <dl>
 <?php
     
-    $project_fields  = array("client-landowner" , "value" ,  "our_role", "client_website", "project_website" );
+    $project_fields  = array("client-landowner" , "value" ,  "role", "client_website", "project_website" );
 
     foreach ($project_fields as $field){
+      if ($field == "role"){
+         echo '<dt>Our Role</dt><dd> '. get_the_category_list() .'</dd>'; 
+      } else {
       $field = get_field_object($field);
-      echo '<div class="col-sm-4">' . $field['label'] . '</div><div class="col-sm-8"> ' . $field['value'] . '</div>';
+      
+        echo '<dt>' . $field['label'] . '</dt><dd> '  . $field['value'] . '</dd>';
+      }
+      
     }
 
-
-
-
 ?>
+</dl>
+<div class="testimonial quote">
+  <blockquote>Donec fermentum vel erat at tincidunt. Aliquam egestas imperdiet erat</blockquote>
 </div>
-    </div>
-    <div class="entry-conten col-sm-6">
+    </div> <!-- end of project meta -->
+    <div class="entry-content col-sm-6">
       <?php the_content(); ?>
     </div>
-    <div class="testemonial col-sm-6">
-      <h1>"Quote Testemonial Here"</h1>
-    </div>
-    <div class="related col-sm-6"> <h2>More Projects here</h2>
-          <footer>
-      <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
-    </footer>
-    </div>
-
+   
+   
 
    
   </article>
+  
+  <div class="related col-sm-6"> <h3>More Projects here</h3>
+        <footer>
+    <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
+  </footer>
+  </div>
+  
 
 <?php endwhile; ?>

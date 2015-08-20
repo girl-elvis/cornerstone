@@ -11,7 +11,16 @@ function title() {
       return __('Home', 'sage');
     
   } elseif (is_archive()) {
-    return get_the_archive_title();
+    if ( is_post_type_archive() ) {
+        $title = sprintf( __( '%s' ), post_type_archive_title( '', false ) );
+        return $title;
+    } elseif (is_category() ) {
+      $title = sprintf( __( '%s' ), single_term_title( '', false ) );
+        return $title;
+    }else {
+      return get_the_archive_title();
+    }
+    
   } elseif (is_search()) {
     return sprintf(__('Search Results for %s', 'sage'), get_search_query());
   } elseif (is_404()) {

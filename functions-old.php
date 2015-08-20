@@ -33,7 +33,6 @@ unset($file, $filepath);
 
 
 
-
 /* HEADER  */
 
 /* HOMEPAGE  */
@@ -42,22 +41,69 @@ unset($file, $filepath);
 
 function add_homemenu() {
  if(is_home() || is_front_page() ) {  
-    echo "<div id='hometop'><div class='home-image'>Homepage Slider Here</div>" ;
+    echo "<div id='hometop'><div class='home-image'>" .  get_new_royalslider(1) . "</div>";
      if (has_nav_menu('question_menu')) {
-      echo "<div id='homequestions'>";
-       wp_nav_menu(['container' => 'nav' , 'container_id' => 'hereiam' , 'theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
-      echo "</div"; // close #homequestions
+       wp_nav_menu(['theme_location' => 'question_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-question-sign"></span>']); 
     } 
-    
     if (has_nav_menu('sectors_menu')) {
-      echo "<div id='homesectors'>";
        wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row', 'link_after'=> '<span class="glyphicon glyphicon-triangle-right"></span>']);
-      echo "</div"; // close #homesectors
     }
-    echo "</div><div class='homebottom'><h2> Latest News</h2>";
+    echo "</div> <div class='homebottom row'><div class='homenews col-sm-6'><h2>Latest News</h2>";
   }     
 }
 add_action( 'loop_start', 'add_homemenu');
+
+
+// Add close div (opened in add_homemenu function)
+
+function close_homediv() {
+ if(is_home() || is_front_page() ) { 
+  echo "</div><div class='quote col-sm-6'><h1> QUOTE HERE </h1></div></div>";
+  }
+
+  //else if (is_page('our-expertise')){ // PEOPLE PAGE
+
+  //   // For Postition peeps first
+  //   $args = array( 'post_type' => 'person','nopaging' => true, 'post_per_page' => '-1', );
+  //   $postslist = get_posts( $args );
+  //   global $post;
+
+  // // LOOP FOR STAFF
+  // echo "<div id='staff'><ul>";
+
+  // foreach ( $postslist as $post ) :    
+  //   setup_postdata( $post ); 
+  //   $pos = get_post_meta($post->ID, 'postition', true);
+  //   $field = get_fields($post->ID); 
+  //   //print_r($field);
+  //     if (in_array("STAFF", $pos)) {
+  //         echo "<li><div class='expert'><h1>" . get_the_title() . "</h1><h2>" . $field['jobtitle'] . "</h2>" ;
+  //         echo "</div></li>"; 
+  //     }
+  //   endforeach;  
+
+  // echo "</ul></div>";
+
+  // // LOOP FOR STAFF
+  // echo "<div id='board'><h2>BOARD:</h2><p>The Cornerstone Board is chaired by John McDonough, with six non-executive directors, both ordinary and preference shareholders.</p><ul>";
+
+  // foreach ( $postslist as $post ) :    
+  //   setup_postdata( $post ); 
+  //   $pos = get_post_meta($post->ID, 'postition', true);
+  //     if (in_array("BOARD", $pos)) {
+  //         echo "<li>" . get_the_title() . "</li>"; 
+  //     }
+  // endforeach;  
+
+  // echo "</ul></div>";
+
+  // wp_reset_postdata();
+
+  // }
+}
+add_action( 'loop_end', 'close_homediv');
+
+
 
 // Add classes to home page menus
 
@@ -78,14 +124,7 @@ function special_nav_class($classes, $item){
 add_filter('nav_menu_css_class' , 'special_nav_class' , 90 , 2);
 
 
-// Add close div (opened in add_homemenu function)
 
-function add_homediv() {
- if(is_home() || is_front_page() ) { 
-  echo "<div class='quote'><h1> QUOTE HERE </h1></div></div>";
-  }
-}
-add_action( 'loop_end', 'add_homediv');
 
 
 // filter so only 2 news posts
@@ -146,4 +185,61 @@ function register_cpt_project() {
     register_post_type( 'project', $args );
 }
 
+// Person CPT for staff & board 
+    add_action( 'init', 'register_cpt_person' );
+
+    function register_cpt_person() {
+
+        $labels = array( 
+            'name' => _x( 'People', 'person' ),
+            'singular_name' => _x( 'Person', 'person' ),
+            'add_new' => _x( 'Add New', 'person' ),
+            'add_new_item' => _x( 'Add New Person', 'person' ),
+            'edit_item' => _x( 'Edit this Person', 'person' ),
+            'new_item' => _x( 'New Person', 'person' ),
+            'view_item' => _x( 'View this Person', 'person' ),
+            'search_items' => _x( 'Search People', 'person' ),
+            'not_found' => _x( 'No people found', 'person' ),
+            'not_found_in_trash' => _x( 'No people found in Trash', 'person' ),
+            'parent_item_colon' => _x( 'Parent:', 'person' ),
+            'menu_name' => _x( 'People', 'person' ),
+        );
+
+        $args = array( 
+            'labels' => $labels,
+            'hierarchical' => false,
+            
+            'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+            
+            'public' => true,
+            'show_ui' => true,
+            'show_in_menu' => true,
+             'menu_position' => 5,
+            'menu_icon' => 'dashicons-groups',
+            'show_in_nav_menus' => true,
+            'publicly_queryable' => true,
+            'exclude_from_search' => false,
+            'has_archive' => true,
+            'query_var' => true,
+            'can_export' => true,
+            'rewrite' => true,
+            'capability_type' => 'post'
+        );
+
+        register_post_type( 'person', $args );
+    }
+
+
 // ADD Project Taxonomy?
+
+
+    // Cat slider skin - added by Nathan 130815
+  
+  add_filter('new_royalslider_skins', 'new_royalslider_add_custom_skin', 10, 2);
+  function new_royalslider_add_custom_skin($skins) {
+        $skins['CornerstoneSkin'] = array(
+             'label' => 'Cornerstone Skin',
+             'path' => get_stylesheet_directory_uri() . '/royal/cornerstone-slider.css'  // get_stylesheet_directory_uri returns path to your theme folder
+        );
+        return $skins;
+  }

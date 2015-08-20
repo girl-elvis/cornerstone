@@ -58,7 +58,7 @@ add_action( 'loop_start', 'add_homemenu');
 
 function close_homediv() {
  if(is_home() || is_front_page() ) { 
-  echo "</div><div class='quote col-sm-6'><h1> QUOTE HERE </h1></div></div>";
+  echo "</div><div class='quote col-sm-6'><blockquote>We work with public bodies and other land owners to use property assets as a catalyst to deliver commercial solutions to public policy issues.</blockquote></div></div>";
   }
 
   //else if (is_page('our-expertise')){ // PEOPLE PAGE

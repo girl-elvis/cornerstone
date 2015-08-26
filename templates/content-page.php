@@ -34,6 +34,25 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 			}
 	      echo "</div><div class='col-sm-6'><h2>Example Case Study Text</h2>";
 	      // echo through repeater CS projects
+	      $posts = get_field('cornerstone_project');
+
+				if( $posts ): ?>
+				    <ul>
+				    <?php foreach( $posts as $post): // variable must be called $post (IMPORTANT) ?>
+				        <?php setup_postdata($post); ?>
+				        <li>
+				            <?php the_post_thumbnail() ; the_title(); ?>
+				            <p> <?php the_excerpt(); ?> </p>
+
+
+				            <!-- <span>Custom field from $post: <?php the_field('author'); ?></span> -->
+				        </li>
+				    <?php endforeach; ?>
+				    </ul>
+				    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+				<?php endif; 
+
+
 	      echo "</div></div></li>"; 
 	  }
 	endforeach;  

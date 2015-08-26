@@ -112,33 +112,49 @@
 
 /// OUR EXPERTISE PAGE
 
-.peoplesection ul {
-	padding-left: 0;
-	position: relative;
-	li{
-		list-style: none; 
-		padding-left: 0; 
-		position: static; 
-		background-color: $pale;
-		min-height: 460px;
-		&.def{
+.peoplesection {
+	#staff ul li{
 			height: 200px;
-			min-height: 0;
-			.expert{
-				display: none;
+			position: relative;
+
+			&:after { content: ""; 
+				position: absolute; 
+				left: 0; 
+				bottom: 0; 
+				width: 0; 
+				height: 0; 
+				border-bottom: 13px solid $brand-primary; 
+				border-left: 55px solid transparent; 
+				border-right: 55px solid transparent; 
 			}
+			&.def:after {
+				border-bottom: 13px solid transparent; 
+			}
+
+	}
+	ul {
+		padding-left: 0;
+		position: relative;
+		overflow: hidden;
+		margin-bottom: 0;
+		
+		li{
+			list-style: none; 
+			padding-left: 0; 
+			position: static; 
+			background-color: $pale;		
+			
+				.expert{
+					display: none;
+				}
+			
 		}
 	}
-
-	.expert {
-		width: 100%; 
-		position: absolute; 
-		left: 0; 
-		background-color: $dark;
-		color: $pale;
-		margin-top: $pad-left;
-		height: 300px;
-		div {position: static;}
+	.displaystaff{
+		background: $brand-primary;
+		overflow: hidden;
 	}
+	#board {clear:both;}
 	
 }
+

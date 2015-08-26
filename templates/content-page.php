@@ -19,13 +19,28 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 	//print_r($field);
 	  if (in_array("STAFF", $pos)) {
 	      echo "<li class='col-sm-5ths def'><a href=#>" .  get_the_post_thumbnail($post->ID,"portrait") ."</a>";
-	      echo "<div class='expert'><div class='col-sm-4'><h1>" . get_the_title() . "</h1><h2>" . $field['jobtitle'] . "</h2>" ;
-	      echo "<h2>Bio</h2><p>" .$field['bio'] . "</p></div><div class='col-sm-4'>Projects Worked On</div><div class='col-sm-4'>Example Case Study Text</div>";
-	      echo "</div></li>"; 
+	      echo "<div class='expert'><div class='col-sm-6'><h1>" . get_the_title() . "</h1><h2>" . $field['jobtitle'] . "</h2>" ;
+	      echo "<h2>Bio</h2><p>" .$field['bio'] . "</p><h2>Projects Worked On</h2>";
+	      // Echo through repeater projects
+	      if( get_field('experience') )
+			{
+				while( has_sub_field('experience') )
+				{ 
+					$name = get_sub_field('name');
+					$desc = get_sub_field('description');
+					echo "<h3>" . $name . "</h3><p>" . $desc . "</p>";
+					// do something with sub field...
+				}
+			}
+	      echo "</div><div class='col-sm-6'><h2>Example Case Study Text</h2>";
+	      // echo through repeater CS projects
+	      echo "</div></div></li>"; 
 	  }
 	endforeach;  
 
 	echo "</ul></div>";
+echo "<div class='displaystaff'></div>";
+
 
 	// LOOP FOR STAFF
 	echo "<div id='board'><h2>BOARD:</h2><p>The Cornerstone Board is chaired by John McDonough, with six non-executive directors, both ordinary and preference shareholders.</p><ul>";

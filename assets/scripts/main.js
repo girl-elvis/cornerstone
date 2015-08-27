@@ -75,28 +75,15 @@
   $(document).ready(UTIL.loadEvents);
 
   //People Page
-  $last = undefined;
+$( ".peoplesection img" ).click(function() {
 
-  $( ".peoplesection li" ).click(function(e) {
-    if ( $last && e.target == $last ) {
-      $(".displaystaff").html(" ");
-      $last = undefined;
-    } else {
-      var info = $(this).find(".expert").html();
-      $(this).nextAll(".displaystaff").addClass("active").html(info);
-            //;
-
-      $last = e.target;
-    }
-  
-  $( this )
+  $( this ).parent().parent()
           .toggleClass( "def" );
-  $( this ).siblings("li")
+  $( this ).parent().parent().siblings()
             .addClass("def");
-
-
-
+  
 });
+
 
 
 

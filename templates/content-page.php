@@ -32,7 +32,7 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 					// do something with sub field...
 				}
 			}
-	      echo "</div><div class='col-sm-6'><h2>Example Case Study Text</h2>";
+	      echo "</div><div class='col-sm-6'><h2>Cornerstone Projects</h2>";
 	      // echo through repeater CS projects
 	      $posts = get_field('cornerstone_project');
 
@@ -58,7 +58,7 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 	endforeach;  
 
 	echo "</ul></div>";
-echo "<div class='displaystaff'></div>";
+
 
 
 	// LOOP FOR STAFF

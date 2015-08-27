@@ -46,7 +46,7 @@ body{
     background-color: $brand-primary;
 
 }
-.container{
+.container, .container-fluid{
     background: $pale;
     border-width: 0;
     border-left: 2px solid $purple;

@@ -1,5 +1,5 @@
 <header class="banner navbar navbar-default navbar-fixed-top" role="banner">
-  <div class="container">
+  <div class="container-fluid">
   <div class="logo"><a class="navbar-brand" title="<?php bloginfo('name'); ?>" rel="home" href="<?= esc_url(home_url('/')); ?>"><h1 class="offscreen"><?php bloginfo('name'); ?></h1></a></div>
 
 

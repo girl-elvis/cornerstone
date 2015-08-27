@@ -6,7 +6,7 @@ footer {
     text-shadow: none;
     padding: 0;
     margin-top: 0;
-    .container {
+    .container, .container-fluid {
 		background: $pale-stone;
 		border-top: 5px solid $brand-primary;
 	}

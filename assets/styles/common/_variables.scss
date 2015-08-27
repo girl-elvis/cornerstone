@@ -33,8 +33,10 @@ $highlight: #EDA900 ; // orangy yellow
 $grid-gutter-width: 20px !default;
 $pad-left : ($grid-gutter-width/2);
 
-// Small screen / tablet
-$container-tablet:             (920px + $grid-gutter-width) !default;
+// // Small screen / tablet
+// $container-desktop:             (920px + $grid-gutter-width) !default;
 
-// Large screen / wide desktop
-$container-large-desktop:      (940px + $grid-gutter-width) !default;
+// // Large screen / wide desktop
+// $container-large-desktop:      (940px + $grid-gutter-width) !default;
+
+

@@ -6,13 +6,13 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 	echo "<div class='peoplesection'>";
 	// For Postition peeps first
 	$args = array( 'post_type' => 'person','nopaging' => true, 'post_per_page' => '-1', );
-	$postslist = get_posts( $args );
+	$stafflist = get_posts( $args );
 	global $post;
 
 	// LOOP FOR STAFF
 	echo "<div id='staff'><ul>";
 
-	foreach ( $postslist as $post ) :    
+	foreach ( $stafflist as $i=>$post ) :    
 		setup_postdata( $post ); 
 		$pos = get_post_meta($post->ID, 'postition', true);
 		$field = get_fields($post->ID); 
@@ -31,8 +31,9 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 					echo "<h3>" . $name . "</h3><p>" . $desc . "</p>";
 					// do something with sub field...
 				}
-			}
-	      echo "</div><div class='col-sm-6'><h2>Example Case Study Text</h2>";
+			} // end looping through experience fields
+
+	      echo "</div><div class='col-sm-6'><h2>Cornerstone Projects</h2>";
 	      // echo through repeater CS projects
 	      $posts = get_field('cornerstone_project');
 
@@ -48,23 +49,29 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 				            <!-- <span>Custom field from $post: <?php the_field('author'); ?></span> -->
 				        </li>
 				    <?php endforeach; ?>
+
 				    </ul>
 				    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-				<?php endif; 
+				<?php endif; // end looping through listed CS projects
 
 
 	      echo "</div></div></li>"; 
+	      //echo ("count is " . ($i+1));
+	      if((($i+1) % 5) == 0) {
+	      	echo "<div class='displaystaff col-sm-12'></div>";
+	      }
 	  }
-	endforeach;  
+
+	endforeach;  // end of looping through People
+			    
 
 	echo "</ul></div>";
-echo "<div class='displaystaff'></div>";
 
 
 	// LOOP FOR STAFF
 	echo "<div id='board'><h2>BOARD:</h2><p>The Cornerstone Board is chaired by John McDonough, with six non-executive directors, both ordinary and preference shareholders.</p><ul>";
 
-	foreach ( $postslist as $post ) :    
+	foreach ( $stafflist as $post ) :    
 		setup_postdata( $post ); 
 		$pos = get_post_meta($post->ID, 'postition', true);
 		  if (in_array("BOARD", $pos)) {

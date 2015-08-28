@@ -75,15 +75,14 @@
   $(document).ready(UTIL.loadEvents);
 
   //People Page
-$( ".peoplesection img" ).click(function() {
+// $( ".peoplesection img" ).click(function() {
 
-  $( this ).parent().parent()
-          .toggleClass( "def" );
-  $( this ).parent().parent().siblings()
-            .addClass("def");
+//   $( this ).parent().parent()
+//           .toggleClass( "def" );
+//   $( this ).parent().parent().siblings()
+//             .addClass("def");
   
-});
-
+// });
 
 
 

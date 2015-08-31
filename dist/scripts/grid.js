@@ -8,7 +8,20 @@
 * Licensed under the MIT license.
 */
 
-
+function addslashes(str) {
+str=str.replace(/\\/g,'\\\\');
+str=str.replace(/\'/g,'\\\'');
+str=str.replace(/\"/g,'\\"');
+str=str.replace(/\0/g,'\\0');
+return str;
+}
+function stripslashes(str) {
+str=str.replace(/\\'/g,'\'');
+str=str.replace(/\\"/g,'"');
+str=str.replace(/\\0/g,'\0');
+str=str.replace(/\\\\/g,'\\');
+return str;
+}
 
 
 var $event = $.event,
@@ -195,7 +208,7 @@ var Grid = (function() {
 		support = Modernizr.csstransitions,
 		// default settings
 		settings = {
-			minHeight : 500,
+			minHeight : 600,
 			speed : 350,
 			easing : 'ease'
 		};
@@ -346,14 +359,23 @@ var Grid = (function() {
 	Preview.prototype = {
 		create : function() {
 			// create Preview structure:
-			this.$title = $( '<h3></h3>' );
+			this.$title = $( '<h1></h1>' );
+			this.$jobtitle = $( '<h3></h3>' );
 			this.$description = $( '<p></p>' );
-			//this.$href = $( '<a href="#">Visit website</a>' );
-			this.$details = $( '<div class="og-details"></div>' ).append( this.$title, this.$description, this.$href );
-			this.$loading = $( '<div class="og-loading"></div>' );
-			this.$fullimage = $( '<div class="og-fullimg"></div>' ).append( this.$loading );
+			this.$bio = $( '<p></p>' );
+			this.$exname1 =$( '<h3></h3>' );
+			this.$exdesc1= $( '<p></p>' );
+			this.$exname2 =$( '<h3></h3>' );
+			this.$exdesc2= $( '<p></p>' );
+			this.$exname3 =$( '<h3></h3>' );
+			this.$exdesc3= $( '<p></p>' );
+
+this.$href = $( '' );
+
+			this.$details = $( '<div class="og-details"></div>' ).append( this.$title, this.$jobtitle, this.$description, this.$bio, this.$exname1, this.$exdesc1 , this.$exname2, this.$exdesc2, this.$exname3, this.$exdesc3  );
+			
 			this.$closePreview = $( '<span class="og-close"></span>' );
-			this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$fullimage, this.$details );
+			this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$details );
 			this.$previewEl = $( '<div class="og-expander"></div>' ).append( this.$previewInner );
 			// append preview element to the item
 			this.$item.append( this.getEl() );
@@ -381,40 +403,38 @@ var Grid = (function() {
 			current = this.$item.index();
 
 			// update preview´s content
+			//var experience = [] ;
+			//for(var i=1; i<6; i++){ experience.push[i] };
+
+
 			var $itemEl = this.$item.children( 'a' ),
 				eldata = {
 					href : $itemEl.attr( 'href' ),
-					largesrc : $itemEl.data( 'largesrc' ),
 					title : $itemEl.data( 'title' ),
-					description : $itemEl.data( 'description' )
+					jobtitle : $itemEl.data( 'jobtitle' ),
+					description : $itemEl.data( 'description' ),
+					bio : $itemEl.data('bio'),
+					exname1 : $itemEl.attr('data-ex-name1'),
+					exdesc1 : $itemEl.attr('data-ex-desc1'),
+					exname2 : $itemEl.attr('data-ex-name2'),
+					exdesc2 : $itemEl.attr('data-ex-desc2'),
+					exname3 : $itemEl.data('ex-name3'),
+					exdesc3 : $itemEl.data('ex-desc3')
 				};
 
 			this.$title.html( eldata.title );
+			this.$jobtitle.html( eldata.jobtitle );
+			this.$bio.html( eldata.bio );
 			this.$description.html( eldata.description );
-			this.$href.attr( 'href', eldata.href );
-
+			this.$exname1.html( eldata.exname1 );
+			this.$exdesc1.html( eldata.exdesc1 );
+			this.$exname2.html( eldata.exname2 );
+			this.$exdesc2.html( eldata.exdesc2 );			
+			this.$exname3.html( eldata.exname3 );
+			this.$exdesc3.html( eldata.exdesc3 );
 			var self = this;
 			
-			// remove the current image in the preview
-			if( typeof self.$largeImg != 'undefined' ) {
-				self.$largeImg.remove();
-			}
-
-			// preload large image and add it to the preview
-			// for smaller screens we don´t display the large image (the media query will hide the fullimage wrapper)
-			if( self.$fullimage.is( ':visible' ) ) {
-				this.$loading.show();
-				$( '<img/>' ).load( function() {
-					var $img = $( this );
-					if( $img.attr( 'src' ) === self.$item.children('a').data( 'largesrc' ) ) {
-						self.$loading.hide();
-						self.$fullimage.find( 'img' ).remove();
-						self.$largeImg = $img.fadeIn( 350 );
-						self.$fullimage.append( self.$largeImg );
-					}
-				} ).attr( 'src', eldata.largesrc );	
-			}
-
+		
 		},
 		open : function() {
 

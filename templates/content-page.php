@@ -23,7 +23,7 @@ if (is_page('our-expertise')){ // PEOPLE PAGE
 
 	//print_r($field);
 	  if (in_array("STAFF", $pos)) {
-	      echo "<li ><a href=#";
+	      echo "<li ><a href=''";
 	      echo " data-title='" . get_the_title() ."' ";
 		echo " data-jobtitle='" . $field['jobtitle'] ."' ";
 		echo " data-bio='" . addslashes($field['bio']) ."' ";

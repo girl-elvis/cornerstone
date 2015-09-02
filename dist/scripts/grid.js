@@ -358,9 +358,10 @@ var Grid = (function() {
 
 	Preview.prototype = {
 		create : function() {
+
 			// create Preview structure:
 			this.$title = $( '<h1></h1>' );
-			this.$jobtitle = $( '<h3></h3>' );
+			this.$jobtitle = $( '<h2></h2>' );
 			this.$description = $( '<p></p>' );
 			this.$bio = $( '<p></p>' );
 			this.$exname1 =$( '<h3></h3>' );

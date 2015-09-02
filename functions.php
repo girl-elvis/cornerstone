@@ -229,16 +229,7 @@ function register_cpt_project() {
         register_post_type( 'person', $args );
     }
 
-// Add People posts to archive pages
-function emf_add_custom_types( $query ) {
-  if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
-    $query->set( 'post_type', array(
-     'post', 'project'
-    ));
-    return $query;
-  }
-}
-add_filter( 'pre_get_posts', 'emf_add_custom_types' );
+
 
 // ADD Project Taxonomy?
 

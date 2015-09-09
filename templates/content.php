@@ -6,15 +6,15 @@
 
 
 	<?php 
-		echo "<div class='entry-meta'><dl>";
-		if (is_post_type_archive( 'project' )) {			 // Meta for Project Post
+		echo "<div class='entry-meta'><dl>"; 
+		if (is_post_type_archive( 'project' ) || is_category( array('adviser','developer','broker') ) ){			 // Meta for Project Post
 			$project_fields  = array("client-landowner" );
 		    $field = get_field_object("client-landowner");
 		    echo '<dt>' . $field['label'] . '</dt><dd> ' . $field['value'] . '</dd>';
 		    echo '<dt>Our Role</dt><dd> '. get_the_category_list() .'</dd>'; 		    
 		} elseif (is_category( 'news' )) {					// Meta for News Post
 			echo get_the_category_list(); 
-			echo 'post';
+			
 		}
 		echo "</dl></div>";
 	?>

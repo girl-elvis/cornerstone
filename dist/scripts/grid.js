@@ -358,12 +358,15 @@ var Grid = (function() {
 
 	Preview.prototype = {
 		create : function() {
-
 			// create Preview structure:
 			this.$title = $( '<h1></h1>' );
-			this.$jobtitle = $( '<h2></h2>' );
+			this.$jobtitle = $( '<h3></h3>' );
 			this.$description = $( '<p></p>' );
 			this.$bio = $( '<p></p>' );
+			// while (i < 5) {
+	  //   		text += "The number is " + i;
+			//     i++;
+			// }
 			this.$exname1 =$( '<h3></h3>' );
 			this.$exdesc1= $( '<p></p>' );
 			this.$exname2 =$( '<h3></h3>' );
@@ -371,7 +374,9 @@ var Grid = (function() {
 			this.$exname3 =$( '<h3></h3>' );
 			this.$exdesc3= $( '<p></p>' );
 
-this.$href = $( '' );
+
+
+			//this.$href = $( '' );
 
 			this.$details = $( '<div class="og-details"></div>' ).append( this.$title, this.$jobtitle, this.$description, this.$bio, this.$exname1, this.$exdesc1 , this.$exname2, this.$exdesc2, this.$exname3, this.$exdesc3  );
 			
@@ -408,19 +413,26 @@ this.$href = $( '' );
 			//for(var i=1; i<6; i++){ experience.push[i] };
 
 
-			var $itemEl = this.$item.children( 'a' ),
-				eldata = {
+			var $itemEl = this.$item.children( 'a' );
+
+			var eldata = {
 					href : $itemEl.attr( 'href' ),
 					title : $itemEl.data( 'title' ),
 					jobtitle : $itemEl.data( 'jobtitle' ),
 					description : $itemEl.data( 'description' ),
 					bio : $itemEl.data('bio'),
-					exname1 : $itemEl.attr('data-ex-name1'),
-					exdesc1 : $itemEl.attr('data-ex-desc1'),
-					exname2 : $itemEl.attr('data-ex-name2'),
-					exdesc2 : $itemEl.attr('data-ex-desc2'),
+					exname1 : $itemEl.data('ex-name1'),
+					exdesc1 : $itemEl.data('ex-desc1'),
+					exname2 : $itemEl.data('ex-name2'),
+					exdesc2 : $itemEl.data('ex-desc2'),
 					exname3 : $itemEl.data('ex-name3'),
-					exdesc3 : $itemEl.data('ex-desc3')
+					exdesc3 : $itemEl.data('ex-desc3'),
+					csplink1 : $itemEl.data('csp-link1'),
+					csptitle1 : $itemEl.data('csp-title1'),
+					csplink2 : $itemEl.data('csp-link2'),
+					csptitle2 : $itemEl.data('csp-title2'),
+					csplink3 : $itemEl.data('csp-link3'),
+					csptitle3 : $itemEl.data('csp-title3')
 				};
 
 			this.$title.html( eldata.title );

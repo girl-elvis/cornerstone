@@ -20,9 +20,17 @@
 					$desc = get_sub_field('partner_description');
 					$logo =  get_sub_field('partner_image_or_logo');
 					$link = get_sub_field('partner_link');
-					echo ("<img src=" . $logo . " alt='". $name ."-logo'/>");
+
+					if( $logo ) {
+						echo wp_get_attachment_image( $logo, "thumbnail" );
+					}
+
 					echo ("<h2>" . $name . "</h2>");
-					echo ("<p>" . $link . "</p>");
+
+					if( $link ) {
+						echo ("<p>" . $link . "</p>");
+					}
+
 					echo ("<p>" . $desc . "</p>");
 					
 					

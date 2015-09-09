@@ -60,46 +60,6 @@ function close_homediv() {
  if(is_home() || is_front_page() ) { 
   echo "</div><div class='quote col-sm-6'><blockquote>We work with public bodies and other land owners to use property assets as a catalyst to deliver commercial solutions to public policy issues.</blockquote></div></div>";
   }
-
-  //else if (is_page('our-expertise')){ // PEOPLE PAGE
-
-  //   // For Postition peeps first
-  //   $args = array( 'post_type' => 'person','nopaging' => true, 'post_per_page' => '-1', );
-  //   $postslist = get_posts( $args );
-  //   global $post;
-
-  // // LOOP FOR STAFF
-  // echo "<div id='staff'><ul>";
-
-  // foreach ( $postslist as $post ) :    
-  //   setup_postdata( $post ); 
-  //   $pos = get_post_meta($post->ID, 'postition', true);
-  //   $field = get_fields($post->ID); 
-  //   //print_r($field);
-  //     if (in_array("STAFF", $pos)) {
-  //         echo "<li><div class='expert'><h1>" . get_the_title() . "</h1><h2>" . $field['jobtitle'] . "</h2>" ;
-  //         echo "</div></li>"; 
-  //     }
-  //   endforeach;  
-
-  // echo "</ul></div>";
-
-  // // LOOP FOR STAFF
-  // echo "<div id='board'><h2>BOARD:</h2><p>The Cornerstone Board is chaired by John McDonough, with six non-executive directors, both ordinary and preference shareholders.</p><ul>";
-
-  // foreach ( $postslist as $post ) :    
-  //   setup_postdata( $post ); 
-  //   $pos = get_post_meta($post->ID, 'postition', true);
-  //     if (in_array("BOARD", $pos)) {
-  //         echo "<li>" . get_the_title() . "</li>"; 
-  //     }
-  // endforeach;  
-
-  // echo "</ul></div>";
-
-  // wp_reset_postdata();
-
-  // }
 }
 add_action( 'loop_end', 'close_homediv');
 
@@ -229,9 +189,34 @@ function register_cpt_project() {
         register_post_type( 'person', $args );
     }
 
-
+// Add project posts to archive pages
+function emf_add_custom_types( $query ) {
+  if( is_category()  && empty( $query->query_vars['suppress_filters'] ) ) {
+    $query->set( 'post_type', array(
+     'post', 'project', 'nav_menu_item'
+    ));
+    return $query;
+  }
+}
+add_filter( 'pre_get_posts', 'emf_add_custom_types' );
 
 // ADD Project Taxonomy?
+
+function emf_add_about_menu(){
+
+  if (is_archive() && !is_category( 'news' )){
+     if (has_nav_menu('sectors_menu')) {
+       wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row']);
+    }
+  }
+}
+add_filter( 'loop_end', 'emf_add_about_menu' );
+
+
+function cs_adminstyle() {
+  echo '<style> .term-description-wrap {display: none;}  </style>';
+}
+add_action('admin_head', 'cs_adminstyle');
 
 
     // Cat slider skin - added by Nathan 130815

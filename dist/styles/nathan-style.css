@@ -432,7 +432,42 @@ blockquote {
 	font-size: 15px;
 }
 
+/* EXPERTISE */
+
+.og-expander {
+    background-color: #c2bdb5!important;
+    border: solid 3px #aea8a0;
+   
+}
+
+.og-grid li {
+    display: inline-block;
+    height: 250px;
+    margin: 10px 5px 0;
+    vertical-align: top;
+}
+
+.og-details h1,
+.og-details h3 {
+	color: #7e7771;
+}
+
+.og-details h3 {
+	font-size: 15px;
+	line-height: 1.3em;
+	margin: 0;
+}
+.og-details p {
+    font-size: 11px;
+}
+
 /* ARCHIVE */
+
+.page-header {
+    border-bottom: 1px solid #eee!important;
+    margin: 40px 0 14px;
+    padding-bottom: 0;
+}
 
 .entry-summary p {
     clear: both;
@@ -515,14 +550,55 @@ float: left;
 } 
 /* FOOTER */
 
-footer .container {
+footer .container, footer .container-fluid {
     background: #efeeea;
-    border-top: 5px solid #c5c1b6;
+    border-top: 5px solid #b0a9a2;
+    height: 70px;
 }
 
-.footer-logo {
+/*.footer-logo {
     display: inline;
     float: left;
+}*/
+
+#menu-footer {
+	padding-top: 9px;
+}
+
+#menu-footer::before {
+content: url("../images/c.png");
+    display: block;
+    float: left;
+    height: 47px;
+    margin-right: 14px;
+    padding: 0 6px 0 0;
+    position: relative;
+    width: 40px;
+}
+
+#menu-footer > li {
+    display: inline-block;
+    margin-right: 9px;
+}
+
+footer .nav > li > a {
+	padding-bottom: 3px;
+}
+
+footer .nav > li > a:hover {
+    background: none;
+}
+
+footer .nav > li > a:hover {
+	border-bottom: 3px solid #eda900;
+	color: #b0a9a2;
+}
+
+.site-info {
+    float: right;
+    margin-top: -35px;
+    text-align: right;
+    color: #b0a9a2;
 }
 
 /* GOODIES */

@@ -120,7 +120,6 @@
 		padding-left: 0; 
 		position: static; 
 		background-color: $pale;
-		min-height: 460px;
 		&.def{
 			height: 200px;
 			min-height: 0;
@@ -143,3 +142,4 @@
 	
 }
 
+.hidden-bio{display:none;}

@@ -75,9 +75,12 @@ function special_nav_class($classes, $item){
           
        }
      } else if (has_term($menu_locations['sectors_menu'], 'nav_menu', $item)) {
+      if(is_front_page()){
         if (0 == $item->menu_item_parent) { //makes sure not added to sub-menus
            $classes[] = "col-sm-4";
        }
+      }
+        
      }
      return $classes;
 }
@@ -206,7 +209,7 @@ function emf_add_about_menu(){
 
   if (is_archive() && !is_category( 'news' )){
      if (has_nav_menu('sectors_menu')) {
-       wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row']);
+       wp_nav_menu(['theme_location' => 'sectors_menu', 'walker' => new wp_bootstrap_navwalker(), 'menu_class' => 'row col-md-6 col-md-offset-6']);
     }
   }
 }

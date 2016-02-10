@@ -359,26 +359,28 @@ var Grid = (function() {
 	Preview.prototype = {
 		create : function() {
 			// create Preview structure:
-			this.$title = $( '<h1></h1>' );
-			this.$jobtitle = $( '<h3></h3>' );
-			this.$description = $( '<p></p>' );
-			this.$bio = $( '<p></p>' );
+			// this.$title = $( '<h1></h1>' );
+			// this.$jobtitle = $( '<h3></h3>' );
+			// this.$description = $( '<p></p>' );
+			// this.$bio = $( '<p></p>' );
 			// while (i < 5) {
 	  //   		text += "The number is " + i;
 			//     i++;
 			// }
-			this.$exname1 =$( '<h3></h3>' );
-			this.$exdesc1= $( '<p></p>' );
-			this.$exname2 =$( '<h3></h3>' );
-			this.$exdesc2= $( '<p></p>' );
-			this.$exname3 =$( '<h3></h3>' );
-			this.$exdesc3= $( '<p></p>' );
+			// this.$exname1 =$( '<h3></h3>' );
+			// this.$exdesc1= $( '<p></p>' );
+			// this.$exname2 =$( '<h3></h3>' );
+			// this.$exdesc2= $( '<p></p>' );
+			// this.$exname3 =$( '<h3></h3>' );
+			// this.$exdesc3= $( '<p></p>' );
 
-
+			// this.$csp-link1 =$( '<h3></h3>' );
+			// this.$csp-title1= $( '<p></p>' );
 
 			//this.$href = $( '' );
+			var $fullEl = this.$item.children('.hidden-bio').html();
 
-			this.$details = $( '<div class="og-details"></div>' ).append( this.$title, this.$jobtitle, this.$description, this.$bio, this.$exname1, this.$exdesc1 , this.$exname2, this.$exdesc2, this.$exname3, this.$exdesc3  );
+			this.$details = $( '<div class="og-details"></div>' ).append( $fullEl );
 			
 			this.$closePreview = $( '<span class="og-close"></span>' );
 			this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$details );
@@ -413,38 +415,40 @@ var Grid = (function() {
 			//for(var i=1; i<6; i++){ experience.push[i] };
 
 
-			var $itemEl = this.$item.children( 'a' );
+			//var $itemEl = this.$item.children( 'a' );
+			
 
-			var eldata = {
-					href : $itemEl.attr( 'href' ),
-					title : $itemEl.data( 'title' ),
-					jobtitle : $itemEl.data( 'jobtitle' ),
-					description : $itemEl.data( 'description' ),
-					bio : $itemEl.data('bio'),
-					exname1 : $itemEl.data('ex-name1'),
-					exdesc1 : $itemEl.data('ex-desc1'),
-					exname2 : $itemEl.data('ex-name2'),
-					exdesc2 : $itemEl.data('ex-desc2'),
-					exname3 : $itemEl.data('ex-name3'),
-					exdesc3 : $itemEl.data('ex-desc3'),
-					csplink1 : $itemEl.data('csp-link1'),
-					csptitle1 : $itemEl.data('csp-title1'),
-					csplink2 : $itemEl.data('csp-link2'),
-					csptitle2 : $itemEl.data('csp-title2'),
-					csplink3 : $itemEl.data('csp-link3'),
-					csptitle3 : $itemEl.data('csp-title3')
-				};
+			// var eldata = {
+			// 		href : $itemEl.attr( 'href' ),
+			// 		title : $itemEl.data( 'title' ),
+			// 		jobtitle : $itemEl.data( 'jobtitle' ),
+			// 		description : $itemEl.data( 'description' ),
+			// 		bio : $itemEl.data('bio'),
+			// 		exname1 : $itemEl.data('ex-name1'),
+			// 		exdesc1 : $itemEl.data('ex-desc1'),
+			// 		exname2 : $itemEl.data('ex-name2'),
+			// 		exdesc2 : $itemEl.data('ex-desc2'),
+			// 		exname3 : $itemEl.data('ex-name3'),
+			// 		exdesc3 : $itemEl.data('ex-desc3'),
+			// 		csplink1 : $itemEl.data('csp-link1'),
+			// 		csptitle1 : $itemEl.data('csp-title1'),
+			// 		csplink2 : $itemEl.data('csp-link2'),
+			// 		csptitle2 : $itemEl.data('csp-title2'),
+			// 		csplink3 : $itemEl.data('csp-link3'),
+			// 		csptitle3 : $itemEl.data('csp-title3')
+			// 	};
 
-			this.$title.html( eldata.title );
-			this.$jobtitle.html( eldata.jobtitle );
-			this.$bio.html( eldata.bio );
-			this.$description.html( eldata.description );
-			this.$exname1.html( eldata.exname1 );
-			this.$exdesc1.html( eldata.exdesc1 );
-			this.$exname2.html( eldata.exname2 );
-			this.$exdesc2.html( eldata.exdesc2 );			
-			this.$exname3.html( eldata.exname3 );
-			this.$exdesc3.html( eldata.exdesc3 );
+			// this.$title.html( eldata.title );
+			// this.$jobtitle.html( eldata.jobtitle );
+			// this.$bio.html( eldata.bio );
+			// this.$description.html( eldata.description );
+			// this.$exname1.html( eldata.exname1 );
+			// this.$exdesc1.html( eldata.exdesc1 );
+			// this.$exname2.html( eldata.exname2 );
+			// this.$exdesc2.html( eldata.exdesc2 );			
+			// this.$exname3.html( eldata.exname3 );
+			// this.$exdesc3.html( eldata.exdesc3 );
+
 			var self = this;
 			
 		

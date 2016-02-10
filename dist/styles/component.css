@@ -87,8 +87,6 @@
 
 .og-fullimg,
 .og-details {
-	width: 50%;
-	float: left;
 	height: 100%;
 	overflow: hidden;
 	position: relative;

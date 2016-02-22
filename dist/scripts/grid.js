@@ -327,6 +327,7 @@ var Grid = (function() {
 			// same row
 			else {
 				preview.update( $item );
+				preview.expandedIdx = $item.index();
 				return false;
 			}
 			
@@ -338,7 +339,7 @@ var Grid = (function() {
 		preview = $.data( this, 'preview', new Preview( $item ) );
 		// expand preview overlay
 		preview.open();
-
+		return false;
 	}
 
 	function hidePreview() {
@@ -379,7 +380,6 @@ var Grid = (function() {
 
 			//this.$href = $( '' );
 			var $fullEl = this.$item.children('.hidden-bio').html();
-
 			this.$details = $( '<div class="og-details"></div>' ).append( $fullEl );
 			
 			this.$closePreview = $( '<span class="og-close"></span>' );
@@ -393,22 +393,53 @@ var Grid = (function() {
 			}
 		},
 		update : function( $item ) {
-
+				
 			if( $item ) {
 				this.$item = $item;
+				
 			}
 			
 			// if already expanded remove class "og-expanded" from current item and add it to new item
 			if( current !== -1 ) {
+			
+				this.$previewEl.remove(); //Remove old one
+
+
 				var $currentItem = $items.eq( current );
+
+
+
 				$currentItem.removeClass( 'og-expanded' );
 				this.$item.addClass( 'og-expanded' );
+ 				
+
+
+			
+/*	Trying to sort out update */		
+			var $fullEl = this.$item.children('.hidden-bio').html();
+			this.$details = $( '<div class="og-details"></div>' ).append( $fullEl );
+			this.$closePreview = $( '<span class="og-close"></span>' );
+			this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$details );
+			this.$previewEl = $( '<div class="og-expander"></div>' ).append( this.$previewInner );
+			// append preview element to the item
+			this.$item.append( this.getEl() );
+			if( support ) {
+				this.setTransition();
+			}
+
+							
+				this.setHeights();
 				// position the preview correctly
 				this.positionPreview();
+				setTimeout(function() {
+					$currentItem.css( 'height', $currentItem.data( 'height' ) ) // close previous one
+				}, 500)
+				
 			}
 
 			// update current value
 			current = this.$item.index();
+			
 
 			// update preview´s content
 			//var experience = [] ;
@@ -450,8 +481,7 @@ var Grid = (function() {
 			// this.$exdesc3.html( eldata.exdesc3 );
 
 			var self = this;
-			
-		
+				
 		},
 		open : function() {
 

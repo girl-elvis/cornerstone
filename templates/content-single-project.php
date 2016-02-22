@@ -19,8 +19,11 @@
          echo '<dt>Our Role</dt><dd> '. get_the_category_list() .'</dd>'; 
       } else {
       $field = get_field_object($field);
+        if ($field['value']){
+          echo '<dt>' . $field['label'] . '</dt><dd> '  . $field['value'] . '</dd>';          
+        }
       
-        echo '<dt>' . $field['label'] . '</dt><dd> '  . $field['value'] . '</dd>';
+
       }
       
     }

@@ -10,7 +10,7 @@
 	display: inline-block;
 	margin: 10px 5px 0 5px;
 	vertical-align: top;
-	height: 250px;
+	height: 200px;
 }
 
 .og-grid li > a,
@@ -29,10 +29,10 @@
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-bottom-color: #ddd;
+	border-bottom-color:#aea8a0;
 	border-width: 15px;
 	left: 50%;
-	margin: -20px 0 0 -15px;
+	margin: 30px 0 0 -15px;
 }
 
 .og-expander {
@@ -87,13 +87,14 @@
 
 .og-fullimg,
 .og-details {
+	
 	height: 100%;
 	overflow: hidden;
 	position: relative;
 }
 
 .og-details {
-	padding: 0 40px 0 20px;
+	padding: 40px 40px 0 20px;
 }
 
 .og-fullimg {
@@ -105,10 +106,14 @@
 	max-height: 100%;
 	max-width: 100%;
 }
-
+.og-details h1 {	
+font-size: 20px;
+}
+.og-details h2 {
+		
+}
 .og-details h3 {
-	
-	
+font-size: 12px;
 }
 
 .og-details p {
@@ -119,11 +124,7 @@
 
 }
 
-.og-details a::before {
-	content: '\2192';
-	display: inline-block;
-	margin-right: 10px;
-}
+
 
 .og-details a:hover {
 	border-color: #999;

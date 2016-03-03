@@ -2,7 +2,7 @@
   <header>
    <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
     
-     <div class="entry-thumb"><?php the_post_thumbnail("medium", array( 'class' => 'dropshadow' )); ?> </div>
+     <div class="entry-thumb"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail("medium", array( 'class' => 'dropshadow' )); ?> </a></div>
 
 
 	<?php 

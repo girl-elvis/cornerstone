@@ -173,7 +173,7 @@ function register_cpt_project() {
             'hierarchical' => false,
             
             'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
-            
+            'taxonomies' => array( 'position' ),
             'public' => true,
             'show_ui' => true,
             'show_in_menu' => true,
@@ -191,6 +191,60 @@ function register_cpt_project() {
 
         register_post_type( 'person', $args );
     }
+
+
+// Register Custom Taxonomy
+add_action( 'init', 'cs_position_init' );
+
+/**
+ * Register Position custom taxonomy.
+ * 
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+function cs_position_init() {
+  register_taxonomy( 'position', array( 'person' ), array(
+    'hierarchical'                   => true,
+    'labels'                         => array(
+      'name'                       => 'Positions',
+      'singular_name'              => 'Position',
+      'search_items'               => 'Search Positions',
+      'popular_items'              => 'Popular Positions',
+      'all_items'                  => 'All Positions',
+      'parent_item'                => 'Parent Position',
+      'parent_item_colon'          => 'Parent Position:',
+      'edit_item'                  => 'Edit Position',
+      'view_item'                  => 'View Position',
+      'update_item'                => 'Update Position',
+      'add_new_item'               => 'Add New Position',
+      'new_item_name'              => 'New Position Name',
+      'separate_items_with_commas' => 'Separate positions with commas',
+      'add_or_remove_items'        => 'Add or remove positions',
+      'choose_from_most_used'      => 'Choose from most used positions',
+      'menu_name'                  => 'Positions',
+    ),
+    'public'                         => false,
+    'query_var'                      => true,
+    'rewrite'                        => array(
+      'slug'                       => 'position',
+      'with_front'                 => true,
+      'hierarchical'               => true
+    ),
+    'show_admin_column'              => true,
+    'show_ui'                        => true,
+    'show_in_nav_menus'              => false,
+    'show_tagcloud'                  => false
+  ) );
+}
+
+
+// Allow HTML in term/category description 
+
+$filters = array('pre_term_description', 'pre_link_description', 'pre_link_notes', 'pre_user_description');
+foreach ( $filters as $filter ) {
+    remove_filter($filter, 'wp_filter_kses');
+}
+
+
 
 // Add project posts to archive pages
 function emf_add_custom_types( $query ) {
@@ -219,7 +273,7 @@ add_filter( 'loop_end', 'emf_add_about_menu' );
 function cs_adminstyle() {
   echo '<style> .term-description-wrap {display: none;}  </style>';
 }
-add_action('admin_head', 'cs_adminstyle');
+//add_action('admin_head', 'cs_adminstyle');
 
 
     // Cat slider skin - added by Nathan 130815
@@ -232,3 +286,22 @@ add_action('admin_head', 'cs_adminstyle');
         );
         return $skins;
   }
+
+
+
+  // add editor the privilege to edit theme
+
+
+// add $cap capability to this role object
+$roleObject = get_role( 'editor' );
+if (!$roleObject->has_cap( 'edit_theme_options' ) ) {
+    $roleObject->add_cap( 'edit_theme_options' );
+}
+
+function hide_menu() {
+    remove_submenu_page( 'themes.php', 'themes.php' ); // hide the theme selection submenu
+ //   remove_submenu_page( 'themes.php', 'widgets.php' ); // hide the widgets submenu
+
+}
+
+add_action('admin_head', 'hide_menu');

@@ -30,9 +30,19 @@
 
 ?>
 </dl>
+
+<?php if (get_field('quote')){  ?>
+
 <div class="testimonial quote">
-  <blockquote>Donec fermentum vel erat at tincidunt. Aliquam egestas imperdiet erat</blockquote>
+  <blockquote> <?php the_field('quote') ; ?> </blockquote>
 </div>
+
+<?php } ?>
+
+
+
+
+
     </div> <!-- end of project meta -->
     <div class="entry-content col-sm-6">
       <?php the_content(); ?>
@@ -43,11 +53,7 @@
    
   </article>
   
-  <div class="related col-sm-6"> <h3>More Projects here</h3>
-        <footer>
-    <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>
-  </footer>
-  </div>
+
   
 
 <?php endwhile; ?>
